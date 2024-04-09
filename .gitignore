@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.log
+
+# Poetry
+/.venv/
+/.venv/
+.poetry/
+poetry.lock
+
+# Docker
+/.mypy_cache/
+/.pytest_cache/
+.DS_Store
+.dockerignore
+.env
+.env.local
+.env.production
+.env.test
+*.db
+*.db-journal
