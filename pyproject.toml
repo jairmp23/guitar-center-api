@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fastapi-base"
+name = "guitar-center-api"
 version = "0.1.0"
 description = ""
 authors = ["Jair Partida <j.partida@traxion.global>"]
@@ -13,6 +13,12 @@ psycopg2 = "^2.9.9"
 alembic = "^1.13.1"
 uvicorn = "^0.29.0"
 python-dotenv = "^1.0.1"
+boto3 = "^1.34.81"
+pydash = "^8.0.0"
+pyjwt = "^2.8.0"
+requests = "^2.31.0"
+cachetools = "^5.3.3"
+pytest = "^8.1.1"
 
 
 [build-system]
