@@ -1,15 +1,18 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydash import get
+import uuid
+
 from api.db_config import get_db
 from api.exceptions import EntitieNotFound
 from api.schemas.requests.users import CreateUserRequest, UserLoginRequest
 from api.schemas.resources.users import UserResource, UserTokenResource
 from sqlalchemy.orm import Session
 from api.services.users import UserService
-from api.utils.auth import authenticate_user
+from api.utils.auth import auth
 
 
 router = APIRouter()
+
 
 def get_user_service(db: Session = Depends(get_db)):
     return UserService(db)
@@ -42,10 +45,11 @@ def create_user(
 
 @router.get("/{user_id}", response_model=UserResource, status_code=200)
 def get_user(
-    user_id: str,
-    current_user: dict = Depends(authenticate_user),
+    user_id: uuid.UUID,
+    current_user: dict = Depends(auth),
     user_service: UserService = Depends(get_user_service),
 ):
+
     db_user = user_service.get_user(user_id)
     if not db_user:
         raise EntitieNotFound(detail="User Not Found")
